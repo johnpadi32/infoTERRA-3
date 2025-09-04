@@ -12,12 +12,12 @@ class BaseTabBarControllers: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .yellow
+        
         viewControllers = [
             createNavController(viewController: UIViewController(), title: "infoTERRA", imageName: "Home", image: "house.fill"),
             createNavController(viewController: UIViewController(), title: "Search", imageName: "Search", image: "magnifyingglass"),
-            createNavController(viewController: UIViewController(), title: "Categories", imageName: "Categories", image: "lineweight")
-
-
+            createNavController(viewController: CategoryPageController(), title: "Categories", imageName: "Categories", image: "lineweight")
         ]
     }
     
@@ -33,6 +33,5 @@ class BaseTabBarControllers: UITabBarController {
         navController.tabBarItem.image = UIImage(systemName: image)
         
         return navController
-        
     }
 }

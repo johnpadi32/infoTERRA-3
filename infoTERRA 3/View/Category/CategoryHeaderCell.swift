@@ -11,7 +11,7 @@ class CategoryHeaderCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    let systemLabel = UILabel(text: "Respiratory", font: .boldSystemFont(ofSize: 16))
+    let systemLabel = UILabel(text: "Respiratory", font: .boldSystemFont(ofSize: 18))
     
     let titleLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18))
 
@@ -24,7 +24,7 @@ class CategoryHeaderCell: UICollectionViewCell {
         
         backgroundColor = .white
                 
-        systemLabel.textColor = .blue
+        systemLabel.textColor = UIColor.doTERRABlueTextColor
         titleLabel.numberOfLines = 2
         
         imageView.image = .system

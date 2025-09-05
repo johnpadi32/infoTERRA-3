@@ -24,6 +24,13 @@ extension UIImageView {
     }
 }
 
+extension UIButton {
+    convenience init(title: String) {
+        self.init(type: .system)
+        self.setTitle(title, for: .normal)
+    }
+}
+
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,

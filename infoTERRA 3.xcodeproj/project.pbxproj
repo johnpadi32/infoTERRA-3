@@ -15,28 +15,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				infoTERRA_3.xcdatamodeld,
 			);
 			target = 4819A5D52E67BE2300396CE2 /* infoTERRA 3 */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		4819A64F2E69540A00396CE2 /* Exceptions for "infoTERRA 3" folder in "Compile Sources" phase from "infoTERRA 3" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 4819A5D22E67BE2300396CE2 /* Sources */;
-			membershipExceptions = (
-				infoTERRA_3.xcdatamodeld,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4819A6412E69540900396CE2 /* infoTERRA 3 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				4819A64E2E69540A00396CE2 /* Exceptions for "infoTERRA 3" folder in "infoTERRA 3" target */,
-				4819A64F2E69540A00396CE2 /* Exceptions for "infoTERRA 3" folder in "Compile Sources" phase from "infoTERRA 3" target */,
 			);
 			path = "infoTERRA 3";
 			sourceTree = "<group>";

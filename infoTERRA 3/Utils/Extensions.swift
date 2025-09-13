@@ -121,3 +121,9 @@ extension UIView {
     }
 }
 
+extension UIStackView {
+    convenience init(arrangedSubviews: [UIView], customeSpacing: CGFloat = 0) {
+        self.init(arrangedSubviews: arrangedSubviews)
+        self.spacing = customeSpacing
+    }
+}

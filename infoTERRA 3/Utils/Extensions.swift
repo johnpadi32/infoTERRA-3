@@ -7,6 +7,12 @@
 
 import UIKit
 
+extension UIViewController {
+    func sharedButton(selector: Selector) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: selector)
+    }
+}
+
 extension UILabel {
     convenience init(text: String, font: UIFont, numberOfLines: Int = 1) {
         self.init(frame: .zero)

@@ -11,7 +11,7 @@ class MoreAboutProductCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    let moreAboutLabel = UILabel(text: "More on Arborvitae Essential oil", font: .boldSystemFont(ofSize: 20))
+    let moreAboutLabel = UILabel(text: "More on Arborvitae Essential oil", font: .boldSystemFont(ofSize: 22))
     
     let horizontalController = MoreAboutScreenController()
     
@@ -30,7 +30,7 @@ class MoreAboutProductCell: UICollectionViewCell {
         
         moreAboutLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 20, paddingRight: 20)
         
-        horizontalController.view.anchor(top: moreAboutLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        horizontalController.view.anchor(top: moreAboutLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
     }
     
     required init?(coder: NSCoder) {

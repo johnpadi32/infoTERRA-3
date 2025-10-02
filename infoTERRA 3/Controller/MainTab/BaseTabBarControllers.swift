@@ -15,8 +15,8 @@ class BaseTabBarControllers: UITabBarController {
         view.backgroundColor = .white
         
         viewControllers = [
+            createNavController(viewController: HomeController(), title: "infoTERRA", imageName: "Home", image: "house.fill"),
             createNavController(viewController: CategoryPageController(), title: "Categories", imageName: "Categories", image: "lineweight"),
-            createNavController(viewController: UIViewController(), title: "infoTERRA", imageName: "Home", image: "house.fill"),
             createNavController(viewController: UIViewController(), title: "Search", imageName: "Search", image: "magnifyingglass")
 
         ]

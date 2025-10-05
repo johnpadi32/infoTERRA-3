@@ -13,6 +13,23 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
     
+    var homeFullscreenController: HomeFullscreenController!
+    
+    var topConstraint: NSLayoutConstraint?
+    var leadingConstraint: NSLayoutConstraint?
+    var widthConstraint: NSLayoutConstraint?
+    var heightConstraint: NSLayoutConstraint?
+    
+
+    
+    let items = [
+        HomeItem.init(title: "See october Deals", image: .octoberPromotions, Description: "Check this page monthly for doTERRA deals—discounts, free products, and special offers await!", backgroundColor: .blue),
+        HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .deepLavanderColor),
+        HomeItem.init(title: "New Products Are Here", image: .homenewproducts, Description: "Shop Products", backgroundColor: .deepLavanderColor),
+        HomeItem.init(title: "90-Days Reset", image: ._90Daycleanse, Description: "Sluggish mornings? The 90-Day Reset is a simple detox to boost energy, mood, and clarity.", backgroundColor: .deepLavanderColor),
+    ]
+    
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -27,68 +44,107 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     func configureUI() {
         
         navigationController?.isNavigationBarHidden = true
-        
         collectionView.backgroundColor = .systemGray6
-        
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: cellId)
     }
     
+    
     //MARK: - Actions
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let homeFullscreenController = HomeFullscreenController()
-        
-        let redView = homeFullscreenController.view!
-        redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveView)))
-        view.addSubview(redView)
-        addChild(homeFullscreenController)
+        homeFullscreenController.homeItem = items[indexPath.row]
+        homeFullscreenController.dismissHandler = {
+            self.handleRemoveRedView()
+        }
+        let fullscreenView = homeFullscreenController.view!
+        view.addSubview(fullscreenView)
 
+        addChild(homeFullscreenController)
+        
+        self.homeFullscreenController = homeFullscreenController
+        
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
-        // absolute coordindates off cell
+        // absolute coordindates of cell
         guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
         
         self.startingFrame = startingFrame
-        redView.frame = startingFrame
-        redView.layer.cornerRadius = 16
+
+        // auto layout constraint animations
+        // 4 anchors
+        fullscreenView.translatesAutoresizingMaskIntoConstraints = false
+        topConstraint = fullscreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
+        leadingConstraint = fullscreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
+        widthConstraint = fullscreenView.widthAnchor.constraint(equalToConstant: startingFrame.width)
+        heightConstraint = fullscreenView.heightAnchor.constraint(equalToConstant: startingFrame.height)
+        
+        [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach({$0?.isActive = true})
+        self.view.layoutIfNeeded()
+        
+        fullscreenView.layer.cornerRadius = 16
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-            redView.frame = self.view.frame
+
+            self.topConstraint?.constant = 0
+            self.leadingConstraint?.constant = 0
+            self.widthConstraint?.constant = self.view.frame.width
+            self.heightConstraint?.constant = self.view.frame.height
             
+            self.view.layoutIfNeeded() // starts animation
+
+//            self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
             self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height
-            
+
         }, completion: nil)
     }
     
     var startingFrame: CGRect?
     
-    @objc func handleRemoveView(gesture: UITapGestureRecognizer) {
+    @objc func handleRemoveRedView() {
 
-        
+        self.navigationController?.navigationBar.isHidden = false
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-
             
+            self.homeFullscreenController.tableView.contentOffset = .zero
+            
+            guard let startingFrame = self.startingFrame else { return }
+            self.topConstraint?.constant = startingFrame.origin.y
+            self.leadingConstraint?.constant = startingFrame.origin.x
+            self.widthConstraint?.constant = startingFrame.width
+            self.heightConstraint?.constant = startingFrame.height
+            
+            self.view.layoutIfNeeded()
+            
+//            self.tabBarController?.tabBar.transform = .identity
             if let tabBarFrame = self.tabBarController?.tabBar.frame {
                 self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height - tabBarFrame.height
             }
-        }, completion: { _ in
-            gesture.view?.removeFromSuperview()
             
+            guard let cell = self.homeFullscreenController.tableView.cellForRow(at: [0, 0]) as? HomeFullscreenHeader else { return }
+            cell.homeCell.topConstraint.constant = 68
+            cell.layoutIfNeeded()
+            
+        }, completion: { _ in
+            self.homeFullscreenController.view.removeFromSuperview()
+            self.homeFullscreenController.removeFromParent()
         })
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return items.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeCell
+        cell.homeItem = items[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 64, height: 450)
+        return .init(width: view.frame.width - 60, height: 280)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

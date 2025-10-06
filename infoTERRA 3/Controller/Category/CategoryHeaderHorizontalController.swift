@@ -13,6 +13,18 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     let reuseIdentifier = "cellId"
     
+    let items = [
+        SystemItem.init(title: "Respiratory", image: .system, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Reproductive", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Nervous", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Musculoskeletal", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Integumentary", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Immune", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Endocrine", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Digestive", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>),
+        SystemItem.init(title: "Circulatory", image: <#T##UIImage#>, description: <#T##String#>, logoImage: <#T##UIImage#>)
+    ]
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -26,7 +38,7 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     func configureUI() {
         
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemGray6
         collectionView.register(CategoryHeaderCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 

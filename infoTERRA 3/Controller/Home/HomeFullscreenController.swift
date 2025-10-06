@@ -30,17 +30,22 @@ class HomeFullscreenController: UITableViewController {
     @objc func handleDismiss(button: UIButton) {
         button.isHidden = true
         dismissHandler?()
-        
     }
     
     //MARK: - Actions
+    
+    let sectionTitle = ["section 1", "Section2"]
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+    
+        return sectionTitle.count
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         
         if indexPath.row == 0 {
             let headerCell = HomeFullscreenHeader()

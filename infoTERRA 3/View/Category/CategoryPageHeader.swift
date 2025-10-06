@@ -13,15 +13,22 @@ class CategoryPageHeader: UICollectionReusableView {
     
     let categoryHeaderHorizontalController = CategoryHeaderHorizontalController()
     
+    let titleLabel = UILabel(text: "Category", font: .boldSystemFont(ofSize: 28))
+    
     //MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .blue
+        backgroundColor = .systemGray6
         
         addSubview(categoryHeaderHorizontalController.view)
-        categoryHeaderHorizontalController.view.fillSuperview()
+//        categoryHeaderHorizontalController.view.fillSuperview()
+        
+        categoryHeaderHorizontalController.view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 60, paddingRight: 0)
+        
+        addSubview(titleLabel)
+        titleLabel.anchor(left: leftAnchor, bottom: bottomAnchor, paddingLeft: 22, paddingBottom: 5)
     }
     
     required init?(coder: NSCoder) {

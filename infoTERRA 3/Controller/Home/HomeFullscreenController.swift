@@ -34,13 +34,6 @@ class HomeFullscreenController: UITableViewController {
     
     //MARK: - Actions
     
-    let sectionTitle = ["section 1", "Section2"]
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-    
-        return sectionTitle.count
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }

@@ -20,7 +20,7 @@ class CategoryHeaderCell: UICollectionViewCell {
     }
     
     let titleLabel = UILabel(text: "Respiratory", font: .boldSystemFont(ofSize: 18))
-    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18))
+    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 16))
     let imageView = UIImageView(cornerRadius: 8)
     
     //MARK: - Lifecycle
@@ -31,16 +31,17 @@ class CategoryHeaderCell: UICollectionViewCell {
         backgroundColor = .systemGray6
                 
         titleLabel.textColor = UIColor.doTERRABlueTextColor
-        titleLabel.numberOfLines = 2
+        descriptionLabel.numberOfLines = 0
         
         imageView.image = .system
+        imageView.contentMode = .scaleAspectFill
         
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, titleLabel, imageView])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imageView])
         stackView.axis = .vertical
         stackView.spacing = 12
         
         addSubview(stackView)
-        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8)
     }
     
     required init?(coder: NSCoder) {

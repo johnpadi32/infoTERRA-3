@@ -11,5 +11,4 @@ struct SystemItem {
     let title: String
     let image: UIImage
     let description: String
-    let logoImage: UIImage?
 }

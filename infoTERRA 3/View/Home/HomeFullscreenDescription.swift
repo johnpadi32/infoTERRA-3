@@ -41,8 +41,7 @@ class HomeFullscreenDescription: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(descriptionLabel)
-        descriptionLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 24, paddingRight: 24)
-        
+        descriptionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 24, paddingBottom: 20, paddingRight: 24)
     }
     
     required init?(coder: NSCoder) {

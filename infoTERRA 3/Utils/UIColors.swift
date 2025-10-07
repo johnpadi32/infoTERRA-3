@@ -24,4 +24,6 @@ extension UIColor {
     
     static var DdoTERRABackgroundColor = UIColor.init(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
     
+    static var greenColorDoterra = UIColor.init(red: 137/255, green: 140/255, blue: 48/255, alpha: 1)
+
 }

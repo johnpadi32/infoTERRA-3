@@ -17,6 +17,9 @@ class HomeCell: UICollectionViewCell {
             descriptionLabel.text = homeItem.Description
             imageView.image = homeItem.image
             
+            backgroundColor = homeItem.backgroundColor
+            titleLabel.textColor = homeItem.textColor
+            descriptionLabel.textColor = homeItem.descriptionTextColor
         }
     }
     
@@ -24,7 +27,7 @@ class HomeCell: UICollectionViewCell {
     
     let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 26, weight: .bold), numberOfLines: 2)
     
-    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 16), numberOfLines: 3)
+    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18, weight: .medium), numberOfLines: 3)
     
     let imageView = UIImageView(cornerRadius: 0)
 
@@ -57,7 +60,7 @@ class HomeCell: UICollectionViewCell {
  
         let imageContainerView = UIView()
         imageContainerView.addSubview(imageView)
-        imageView.centerInSuperview(size: .init(width: 450, height: 120))
+        imageView.centerInSuperview(size: .init(width: 450, height: 145))
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, imageContainerView, descriptionLabel
             ])
@@ -66,7 +69,7 @@ class HomeCell: UICollectionViewCell {
         
         addSubview(stackView)
         stackView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 24, paddingBottom: 18, paddingRight: 24)
-        self.topConstraint = stackView.topAnchor.constraint(equalTo: topAnchor, constant: 18)
+        self.topConstraint = stackView.topAnchor.constraint(equalTo: topAnchor, constant: 24)
         self.topConstraint.isActive = true
 
    

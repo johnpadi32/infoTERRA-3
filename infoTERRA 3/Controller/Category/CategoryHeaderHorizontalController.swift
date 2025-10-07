@@ -46,6 +46,7 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     //MARK: - Actions
     
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }

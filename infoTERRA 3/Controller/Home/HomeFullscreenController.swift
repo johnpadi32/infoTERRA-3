@@ -22,6 +22,10 @@ class HomeFullscreenController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        
+        let height = UIApplication.shared.statusBarFrame.height
+        tableView.contentInset = .init(top: 0, left: 0, bottom: height, right: 0)
 
     }
     
@@ -44,6 +48,7 @@ class HomeFullscreenController: UITableViewController {
             let headerCell = HomeFullscreenHeader()
             headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
             headerCell.homeCell.homeItem = homeItem
+            headerCell.homeCell.layer.cornerRadius = 0
             return headerCell
         }
             let cell = HomeFullscreenDescription()
@@ -52,7 +57,7 @@ class HomeFullscreenController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 324
+            return 350
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }

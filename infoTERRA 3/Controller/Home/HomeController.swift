@@ -15,6 +15,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     var homeFullscreenController: HomeFullscreenController!
     
+    
     var topConstraint: NSLayoutConstraint?
     var leadingConstraint: NSLayoutConstraint?
     var widthConstraint: NSLayoutConstraint?
@@ -23,10 +24,10 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
 
     
     let items = [
-        HomeItem.init(title: "See october Deals", image: .octoberPromotions, Description: "Check this page monthly for doTERRA deals—discounts, free products, and special offers await!", backgroundColor: .blue),
-        HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .deepLavanderColor),
-        HomeItem.init(title: "New Products Are Here", image: .homenewproducts, Description: "Shop Products", backgroundColor: .deepLavanderColor),
-        HomeItem.init(title: "90-Days Reset", image: ._90Daycleanse, Description: "Sluggish mornings? The 90-Day Reset is a simple detox to boost energy, mood, and clarity.", backgroundColor: .deepLavanderColor),
+        HomeItem.init(title: "See october Deals" , image: .octoberPromotions, Description: "Check this page monthly for doTERRA deals—discounts, free products, and special offers await!", backgroundColor: .deepLavanderColor, textColor: .white, descriptionTextColor: .systemGray6),
+        HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray),
+        HomeItem.init(title: "New Products Are Here", image: .homenewproducts, Description: "Shop Products", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray),
+        HomeItem.init(title: "90-Days Reset", image: ._90Daycleanse, Description: "Sluggish mornings? The 90-Day Reset is a simple detox to boost energy, mood, and clarity.", backgroundColor: .greenColorDoterra, textColor: .white, descriptionTextColor: .systemGray6),
     ]
     
     
@@ -65,6 +66,8 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         addChild(homeFullscreenController)
         
         self.homeFullscreenController = homeFullscreenController
+        self.collectionView.isUserInteractionEnabled = false
+
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
@@ -97,6 +100,11 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
 
 //            self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
             self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height
+            
+            guard let cell = self.homeFullscreenController.tableView.cellForRow(at: [0,0]) as? HomeFullscreenHeader else { return }
+            
+            cell.homeCell.topConstraint.constant = 65
+            cell.layoutIfNeeded()
 
         }, completion: nil)
     }
@@ -124,12 +132,13 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
             }
             
             guard let cell = self.homeFullscreenController.tableView.cellForRow(at: [0, 0]) as? HomeFullscreenHeader else { return }
-            cell.homeCell.topConstraint.constant = 68
+            cell.homeCell.topConstraint.constant = 24
             cell.layoutIfNeeded()
             
         }, completion: { _ in
             self.homeFullscreenController.view.removeFromSuperview()
             self.homeFullscreenController.removeFromParent()
+            self.collectionView.isUserInteractionEnabled = true
         })
     }
     
@@ -139,12 +148,13 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeCell
+
         cell.homeItem = items[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 60, height: 280)
+        return .init(width: view.frame.width - 60, height: 350)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

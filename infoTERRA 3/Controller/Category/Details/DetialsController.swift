@@ -52,7 +52,6 @@ class DetialsController: BaseListController, UICollectionViewDelegateFlowLayout 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: moreAboutProductCellId, for: indexPath) as! MoreAboutProductCell
             return cell
         }
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

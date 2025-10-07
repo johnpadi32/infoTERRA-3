@@ -12,4 +12,6 @@ struct HomeItem {
     let image: UIImage
     let Description: String
     let backgroundColor: UIColor
+    let textColor: UIColor
+    let descriptionTextColor: UIColor
 }

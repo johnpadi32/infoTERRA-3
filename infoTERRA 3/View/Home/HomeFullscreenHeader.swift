@@ -31,7 +31,7 @@ class HomeFullscreenHeader: UITableViewCell {
         homeCell.fillSuperview()
         
         contentView.addSubview(closeButton)
-        closeButton.anchor(top: topAnchor, right: rightAnchor, paddingTop: 0, paddingRight: 16, width: 80, height: 38)
+        closeButton.anchor(top: topAnchor, right: rightAnchor, paddingTop: 44, paddingRight: 1, width: 80, height: 38)
     }
     
     required init?(coder: NSCoder) {

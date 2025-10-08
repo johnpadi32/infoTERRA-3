@@ -11,8 +11,9 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     //MARK: - Properties
     
-    let cellId = "cellId"
-    
+//    let cellId = "cellId"
+//    let multipleAppCellId = "multipleAppCellId"
+//    
     var homeFullscreenController: HomeFullscreenController!
     
     
@@ -24,10 +25,10 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
 
     
     let items = [
-        HomeItem.init(title: "See october Deals" , image: .octoberPromotions, Description: "Check this page monthly for doTERRA deals—discounts, free products, and special offers await!", backgroundColor: .deepLavanderColor, textColor: .white, descriptionTextColor: .systemGray6),
-        HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray),
-        HomeItem.init(title: "New Products Are Here", image: .homenewproducts, Description: "Shop Products", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray),
-        HomeItem.init(title: "90-Days Reset", image: ._90Daycleanse, Description: "Sluggish mornings? The 90-Day Reset is a simple detox to boost energy, mood, and clarity.", backgroundColor: .greenColorDoterra, textColor: .white, descriptionTextColor: .systemGray6),
+        HomeItem.init(title: "See october Deals" , image: .octoberPromotions, Description: "Check this page monthly for doTERRA deals—discounts, free products, and special offers await!", backgroundColor: .deepLavanderColor, textColor: .white, descriptionTextColor: .systemGray6, cellType: .single),
+        HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray, cellType: .single),
+        HomeItem.init(title: "New Products Are Here", image: .homenewproducts, Description: "Shop Products", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray, cellType: .multiple),
+        HomeItem.init(title: "90-Days Reset", image: ._90Daycleanse, Description: "Sluggish mornings? The 90-Day Reset is a simple detox to boost energy, mood, and clarity.", backgroundColor: .greenColorDoterra, textColor: .white, descriptionTextColor: .systemGray6, cellType: .single),
     ]
     
     
@@ -46,7 +47,8 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         
         navigationController?.isNavigationBarHidden = true
         collectionView.backgroundColor = .systemGray6
-        collectionView.register(HomeCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(HomeCell.self, forCellWithReuseIdentifier: HomeItem.CellType.single.rawValue)
+        collectionView.register(HomeyMultipleAppCell.self, forCellWithReuseIdentifier: HomeItem.CellType.multiple.rawValue)
     }
     
     
@@ -147,14 +149,18 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeCell
-
+        
+        let cellId = items[indexPath.item].cellType.rawValue
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseHomeCell
         cell.homeItem = items[indexPath.item]
         return cell
     }
     
+    static let cellSize: CGFloat = 500
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 60, height: 350)
+        return .init(width: view.frame.width - 64, height: HomeController.cellSize)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

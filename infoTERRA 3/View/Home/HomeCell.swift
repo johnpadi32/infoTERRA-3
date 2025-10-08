@@ -7,11 +7,11 @@
 
 import UIKit
 
-class HomeCell: UICollectionViewCell {
+class HomeCell: BaseHomeCell {
     
     //MARK: - Properties
     
-    var homeItem: HomeItem! {
+    override var homeItem: HomeItem! {
         didSet {
             titleLabel.text = homeItem.title
             descriptionLabel.text = homeItem.Description
@@ -25,9 +25,9 @@ class HomeCell: UICollectionViewCell {
     
     var topConstraint: NSLayoutConstraint!
     
-    let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 26, weight: .bold), numberOfLines: 2)
+    let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 30, weight: .bold), numberOfLines: 2)
     
-    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18, weight: .medium), numberOfLines: 3)
+    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18, weight: .semibold), numberOfLines: 3)
     
     let imageView = UIImageView(cornerRadius: 0)
 
@@ -60,7 +60,7 @@ class HomeCell: UICollectionViewCell {
  
         let imageContainerView = UIView()
         imageContainerView.addSubview(imageView)
-        imageView.centerInSuperview(size: .init(width: 450, height: 145))
+        imageView.centerInSuperview(size: .init(width: 450, height: 265))
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, imageContainerView, descriptionLabel
             ])
@@ -68,7 +68,7 @@ class HomeCell: UICollectionViewCell {
         stackView.spacing = 8
         
         addSubview(stackView)
-        stackView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 24, paddingBottom: 18, paddingRight: 24)
+        stackView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 24, paddingBottom: 24, paddingRight: 24)
         self.topConstraint = stackView.topAnchor.constraint(equalTo: topAnchor, constant: 24)
         self.topConstraint.isActive = true
 

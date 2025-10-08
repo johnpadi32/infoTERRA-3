@@ -14,4 +14,11 @@ struct HomeItem {
     let backgroundColor: UIColor
     let textColor: UIColor
     let descriptionTextColor: UIColor
+    
+    // enum
+    let cellType: CellType
+    
+    enum CellType: String {
+    case single, multiple
+    }
 }

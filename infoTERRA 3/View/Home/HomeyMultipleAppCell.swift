@@ -22,7 +22,7 @@ class HomeyMultipleAppCell: BaseHomeCell {
     
     let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18, weight: .medium), numberOfLines: 3)
     
-    let multipleAppController = UIViewController()
+    let multipleAppController = HomeMultipleAppController()
     
     //MARK: - Lifecycle
     
@@ -31,8 +31,7 @@ class HomeyMultipleAppCell: BaseHomeCell {
         
         backgroundColor = .white
         layer.cornerRadius = 16
-        
-        multipleAppController.view.backgroundColor = .red
+
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, multipleAppController.view])
         stackView.axis = .vertical

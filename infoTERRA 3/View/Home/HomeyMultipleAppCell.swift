@@ -15,6 +15,8 @@ class HomeyMultipleAppCell: BaseHomeCell {
         didSet {
             titleLabel.text = homeItem.title
             descriptionLabel.text = homeItem.Description
+            
+            multipleAppController.collectionView.reloadData()
         }
     }
     

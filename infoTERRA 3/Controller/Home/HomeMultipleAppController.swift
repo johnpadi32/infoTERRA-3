@@ -38,7 +38,6 @@ class HomeMultipleAppController: BaseListController, UICollectionViewDelegateFlo
     //MARK: - Helpers
     
     func configureUI() {
-        
         collectionView.backgroundColor = .white
         collectionView.register(MultipleAppCell.self, forCellWithReuseIdentifier: cellId)
     }
@@ -56,6 +55,11 @@ class HomeMultipleAppController: BaseListController, UICollectionViewDelegateFlo
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailController = DetialsController()
+        navigationController?.pushViewController(detailController, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -77,7 +81,6 @@ class HomeMultipleAppController: BaseListController, UICollectionViewDelegateFlo
         
         if mode == .fullscreen {
             return .init(width: view.frame.width - 48, height: height)
-
         }
         return .init(width: view.frame.width, height: height)
     }
@@ -96,7 +99,6 @@ class HomeMultipleAppController: BaseListController, UICollectionViewDelegateFlo
     }
     
     fileprivate let mode: Mode
-    
     enum Mode {
         case small, fullscreen
     }

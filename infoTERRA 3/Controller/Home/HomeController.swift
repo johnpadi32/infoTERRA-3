@@ -13,18 +13,16 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
 //    let cellId = "cellId"
 //    let multipleAppCellId = "multipleAppCellId"
-//    
+    
+//    var items = [HomeItem]()
+    
     var homeFullscreenController: HomeFullscreenController!
-    
-    
     var topConstraint: NSLayoutConstraint?
     var leadingConstraint: NSLayoutConstraint?
     var widthConstraint: NSLayoutConstraint?
     var heightConstraint: NSLayoutConstraint?
     
-
-    
-    let items = [
+    var items = [
         HomeItem.init(title: "See october Deals" , image: .octoberPromotions, Description: "Check this page monthly for doTERRA deals—discounts, free products, and special offers await!", backgroundColor: .deepLavanderColor, textColor: .white, descriptionTextColor: .systemGray6, cellType: .single),
         HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray, cellType: .single),
         HomeItem.init(title: "New Products Are Here", image: .homenewproducts, Description: "Shop Products", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray, cellType: .multiple),
@@ -39,6 +37,12 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         
         configureUI()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.superview?.setNeedsLayout()
     }
     
     //MARK: - Helpers
@@ -60,7 +64,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         if items[indexPath.item].cellType == .multiple {
             let fullController = HomeMultipleAppController(mode: .fullscreen)
             fullController.modalPresentationStyle = .fullScreen
-            present(fullController, animated: true)
+            present(UINavigationController(rootViewController: fullController), animated: true)
             return
         }
         
@@ -151,6 +155,28 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         })
     }
     
+    @objc func handleMultipleAppTapp(gesture: UIGestureRecognizer) {
+        
+        let collectionView = gesture.view
+        
+        var superview = collectionView?.superview
+        
+        while superview != nil {
+            if let cell = superview as? HomeyMultipleAppCell {
+                guard let indexPath = self.collectionView.indexPath(for: cell) else {
+                    return
+                }
+                
+                let apps = self.items[indexPath.item]
+                
+                let fullController = HomeMultipleAppController(mode: .fullscreen)
+                present(BackEnabledNAvigationController(rootViewController: fullController), animated: true)
+                return
+            }
+            superview = superview?.superview
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
@@ -161,6 +187,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseHomeCell
         cell.homeItem = items[indexPath.item]
+        (cell as? HomeyMultipleAppCell)?.multipleAppController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMultipleAppTapp)))
         return cell
     }
     

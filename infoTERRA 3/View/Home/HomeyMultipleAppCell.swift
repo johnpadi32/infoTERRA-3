@@ -22,7 +22,7 @@ class HomeyMultipleAppCell: BaseHomeCell {
     
     let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18, weight: .medium), numberOfLines: 3)
     
-    let multipleAppController = HomeMultipleAppController()
+    let multipleAppController = HomeMultipleAppController(mode: .small)
     
     //MARK: - Lifecycle
     

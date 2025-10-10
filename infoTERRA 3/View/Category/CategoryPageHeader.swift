@@ -20,7 +20,7 @@ class CategoryPageHeader: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .systemGray6
+        backgroundColor = .white
         
         addSubview(categoryHeaderHorizontalController.view)
 //        categoryHeaderHorizontalController.view.fillSuperview()
@@ -28,7 +28,7 @@ class CategoryPageHeader: UICollectionReusableView {
         categoryHeaderHorizontalController.view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 60, paddingRight: 0)
         
         addSubview(titleLabel)
-        titleLabel.anchor(left: leftAnchor, bottom: bottomAnchor, paddingLeft: 22, paddingBottom: 5)
+        titleLabel.anchor(left: leftAnchor, bottom: bottomAnchor, paddingLeft: 22, paddingBottom: 0)
     }
     
     required init?(coder: NSCoder) {

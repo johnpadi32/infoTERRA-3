@@ -14,7 +14,7 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     let reuseIdentifier = "cellId"
     
     let items = [
-        SystemItem.init(title: "RESPIRATORY SYSTEM", image: .system, description: "The respiratory system supplies oxygen; peppermint supports breathing"),
+        SystemItem.init(title: "RESPIRATORY SYSTEM", image: .respiratory, description: "The respiratory system supplies oxygen; peppermint supports breathing"),
         SystemItem.init(title: "REPRODUCTIVE SYSTEM", image: .reproductive, description: "Stress, toxins, and lifestyle can disrupt reproductive health. Essential oils support hormones, mood, and intimacy."),
         SystemItem.init(title: "NERVOUS SYSTEM", image: .nervous, description: "The nervous system controls thoughts, emotions, and movement. Essential oils help calm and balance it."),
         SystemItem.init(title: "MUSCULOSKELETAL SYSTEM", image: .musculoskeletal, description: "Muscles, bones, and joints power movement. Essential oils and supplements support strength and soothe discomfort."),
@@ -38,7 +38,7 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     func configureUI() {
         
-        collectionView.backgroundColor = .systemGray6
+        collectionView.backgroundColor = .white
         collectionView.register(CategoryHeaderCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 

@@ -57,6 +57,13 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if items[indexPath.item].cellType == .multiple {
+            let fullController = HomeMultipleAppController(mode: .fullscreen)
+            fullController.modalPresentationStyle = .fullScreen
+            present(fullController, animated: true)
+            return
+        }
+        
         let homeFullscreenController = HomeFullscreenController()
         homeFullscreenController.homeItem = items[indexPath.row]
         homeFullscreenController.dismissHandler = {

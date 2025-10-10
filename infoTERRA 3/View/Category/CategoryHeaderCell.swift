@@ -19,8 +19,8 @@ class CategoryHeaderCell: UICollectionViewCell {
         }
     }
     
-    let titleLabel = UILabel(text: "Respiratory", font: .boldSystemFont(ofSize: 18))
-    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 16))
+    let titleLabel = UILabel(text: "Respiratory", font: .boldSystemFont(ofSize: 22))
+    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18))
     let imageView = UIImageView(cornerRadius: 8)
     
     //MARK: - Lifecycle
@@ -28,13 +28,15 @@ class CategoryHeaderCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .systemGray6
+        backgroundColor = .white
                 
         titleLabel.textColor = UIColor.doTERRABlueTextColor
         descriptionLabel.numberOfLines = 0
         
         imageView.image = .system
+//        imageView.backgroundColor = .red
         imageView.contentMode = .scaleAspectFill
+//        imageView.setHeight(120)
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imageView])
         stackView.axis = .vertical

@@ -11,11 +11,10 @@ class MultipleAppCell: UICollectionViewCell {
      
     //MARK: - Properties
     
-    let nameLabel = UILabel(text: "90-Day Reset Cleanse - Month 2", font: .boldSystemFont(ofSize: 14), numberOfLines: 2)
+    let nameLabel = UILabel(text: "90-Day Reset Cleanse - Month 2", font: .boldSystemFont(ofSize: 18), numberOfLines: 2)
     
     let productImage: UIImageView = {
        let iv = UIImageView()
-        iv.image = UIImage(named: "90dayresetmonth")
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         return iv
@@ -35,9 +34,9 @@ class MultipleAppCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        productImage.image = .onGuard
+        productImage.image = ._90Dayresetmonth
         productImage.backgroundColor = .white
-        productImage.setDimensions(height: 80, width: 80)
+        productImage.setDimensions(height: 85, width: 85)
         
         nameLabel.textColor = UIColor.doTERRABlueTextColor
         nameLabel.numberOfLines = 2

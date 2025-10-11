@@ -9,10 +9,16 @@ import UIKit
 
 class HomePromoOfferCell: BaseHomeCell {
     
+    //MARK: - Properties
+    
     override var homeItem: HomeItem! {
         didSet {
             titleLabel.text = homeItem.title
             descriptionLabel.text = homeItem.Description
+            
+            backgroundColor = homeItem.backgroundColor
+            titleLabel.textColor = homeItem.textColor
+            descriptionLabel.textColor = homeItem.descriptionTextColor
         }
     }
     
@@ -22,12 +28,13 @@ class HomePromoOfferCell: BaseHomeCell {
     
     let promoOfferController = PromosOfferController()
     
+    //MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
 
 
-        backgroundColor = .white
+        backgroundColor = .lavanderColor
         
         layer.cornerRadius = 16
         
@@ -42,4 +49,6 @@ class HomePromoOfferCell: BaseHomeCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Helpers
 }

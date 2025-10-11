@@ -19,6 +19,6 @@ struct HomeItem {
     let cellType: CellType
     
     enum CellType: String {
-    case single, multiple
+    case single, multiple, promos
     }
 }

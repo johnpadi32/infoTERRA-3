@@ -60,8 +60,71 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     //MARK: - Actions
     
+    @objc func handleRemoveFullscreenView() {
+
+        self.navigationController?.navigationBar.isHidden = false
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            
+            self.homeFullscreenController.tableView.contentOffset = .zero
+            
+            guard let startingFrame = self.startingFrame else { return }
+            self.topConstraint?.constant = startingFrame.origin.y
+            self.leadingConstraint?.constant = startingFrame.origin.x
+            self.widthConstraint?.constant = startingFrame.width
+            self.heightConstraint?.constant = startingFrame.height
+            
+            self.view.layoutIfNeeded()
+            
+//            self.tabBarController?.tabBar.transform = .identity
+            if let tabBarFrame = self.tabBarController?.tabBar.frame {
+                self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height - tabBarFrame.height
+            }
+            
+            guard let cell = self.homeFullscreenController.tableView.cellForRow(at: [0, 0]) as? HomeFullscreenHeader else { return }
+            cell.homeCell.topConstraint.constant = 24
+            cell.layoutIfNeeded()
+            
+        }, completion: { _ in
+            self.homeFullscreenController.view.removeFromSuperview()
+            self.homeFullscreenController.removeFromParent()
+            self.collectionView.isUserInteractionEnabled = true
+        })
+    }
+    
+    @objc func handleMultipleAppTapp(gesture: UIGestureRecognizer) {
+        
+        let collectionView = gesture.view
+        var superview = collectionView?.superview
+        
+        while superview != nil {
+            if let cell = superview as? HomeyMultipleAppCell {
+                guard let indexPath = self.collectionView.indexPath(for: cell) else {
+                    return
+                }
+                
+                let apps = self.items[indexPath.item]
+                
+                let fullController = HomeMultipleController(mode: .fullscreen)
+                present(BackEnabledNAvigationController(rootViewController: fullController), animated: true)
+                return
+            }
+            superview = superview?.superview
+        }
+    }
+    
+    
+//    fileprivate func showDailyListFullScreen(_ indexPath: IndexPath) {
+//        let fullController = HomeMultipleController(mode: .fullscreen)
+//        fullController.modalPresentationStyle = .fullScreen
+//        present(UINavigationController(rootViewController: fullController), animated: true)
+//    }
+//    
+//    fileprivate func showPromoListFullScreen(_ indexPath: IndexPath) {
+//        
+//    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         
         if items[indexPath.item].cellType == .multiple {
             let fullController = HomeMultipleController(mode: .fullscreen)
@@ -72,17 +135,16 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         
         else if
             items[indexPath.item].cellType == .promos {
-            let fullPromoController = UIViewController()
-            fullPromoController.view.backgroundColor = .red
+            let fullPromoController = PromosOfferController(mode: .fullscreen)
+            fullPromoController.modalPresentationStyle = .fullScreen
                 present(UINavigationController(rootViewController: fullPromoController), animated: true)
                 return
-            
         }
         
         let homeFullscreenController = HomeFullscreenController()
         homeFullscreenController.homeItem = items[indexPath.row]
         homeFullscreenController.dismissHandler = {
-            self.handleRemoveRedView()
+            self.handleRemoveFullscreenView()
         }
         
         let fullscreenView = homeFullscreenController.view!
@@ -136,58 +198,9 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     var startingFrame: CGRect?
     
-    @objc func handleRemoveRedView() {
 
-        self.navigationController?.navigationBar.isHidden = false
-        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-            
-            self.homeFullscreenController.tableView.contentOffset = .zero
-            
-            guard let startingFrame = self.startingFrame else { return }
-            self.topConstraint?.constant = startingFrame.origin.y
-            self.leadingConstraint?.constant = startingFrame.origin.x
-            self.widthConstraint?.constant = startingFrame.width
-            self.heightConstraint?.constant = startingFrame.height
-            
-            self.view.layoutIfNeeded()
-            
-//            self.tabBarController?.tabBar.transform = .identity
-            if let tabBarFrame = self.tabBarController?.tabBar.frame {
-                self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height - tabBarFrame.height
-            }
-            
-            guard let cell = self.homeFullscreenController.tableView.cellForRow(at: [0, 0]) as? HomeFullscreenHeader else { return }
-            cell.homeCell.topConstraint.constant = 24
-            cell.layoutIfNeeded()
-            
-        }, completion: { _ in
-            self.homeFullscreenController.view.removeFromSuperview()
-            self.homeFullscreenController.removeFromParent()
-            self.collectionView.isUserInteractionEnabled = true
-        })
-    }
     
-    @objc func handleMultipleAppTapp(gesture: UIGestureRecognizer) {
-        
-        let collectionView = gesture.view
-        
-        var superview = collectionView?.superview
-        
-        while superview != nil {
-            if let cell = superview as? HomeyMultipleAppCell {
-                guard let indexPath = self.collectionView.indexPath(for: cell) else {
-                    return
-                }
-                
-                let apps = self.items[indexPath.item]
-                
-                let fullController = HomeMultipleController(mode: .fullscreen)
-                present(BackEnabledNAvigationController(rootViewController: fullController), animated: true)
-                return
-            }
-            superview = superview?.superview
-        }
-    }
+
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count

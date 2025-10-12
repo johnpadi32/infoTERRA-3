@@ -26,7 +26,7 @@ class HomePromoOfferCell: BaseHomeCell {
     
     let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18, weight: .semibold), numberOfLines: 3)
     
-    let promoOfferController = PromosOfferController()
+    let promoOfferController = PromosOfferController(mode: .small)
     
     //MARK: - Lifecycle
     

@@ -77,7 +77,7 @@ class HomeMultipleController: BaseListController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let height: CGFloat = 85
+        let height: CGFloat = 95
         
         if mode == .fullscreen {
             return .init(width: view.frame.width - 48, height: height)

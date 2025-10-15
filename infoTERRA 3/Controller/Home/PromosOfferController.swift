@@ -40,13 +40,21 @@ class PromosOfferController: BaseListController, UICollectionViewDelegateFlowLay
     func configureUI() {
         collectionView.backgroundColor = .white
         collectionView.register(PromoOfferCell.self, forCellWithReuseIdentifier: cellId)
-
+    }
+    
+    func setupClosebutton() {
+        view.addSubview(closeButton)
+        closeButton.anchor(top: view.topAnchor, right: view.rightAnchor, paddingTop: 20, paddingRight: 16, width: 44, height: 44)
     }
     
     //MARK: - Actions
     
     @objc func handleDismiss() {
         dismiss(animated: true)
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

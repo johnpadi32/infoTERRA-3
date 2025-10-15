@@ -7,20 +7,23 @@
 
 import UIKit
 
-class BaseTabBarControllers: UITabBarController {
+class BaseTabBarControllers: UITabBarController, UISearchBarDelegate {
+    
+    let searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         view.backgroundColor = .white
         
         viewControllers = [
             createNavController(viewController: HomeController(), title: "infoTERRA", imageName: "Home", image: "house.fill"),
-            createNavController(viewController: CategoryPageController(), title: "Discover", imageName: "Categories", image: "lineweight"),
-            createNavController(viewController: UIViewController(), title: "Search", imageName: "Search", image: "magnifyingglass")
-
+            createNavController(viewController: CategoryPageController(), title: "Discover", imageName: "Categories", image: "sparkle.magnifyingglass"),
+            createNavController(viewController: SearchResultController(), title: "Search", imageName: "Search", image: "favorites"),
         ]
     }
+    
     
     
     fileprivate func createNavController(viewController: UIViewController, title: String, imageName: String, image: String) -> UIViewController {
@@ -32,6 +35,7 @@ class BaseTabBarControllers: UITabBarController {
         navController.navigationBar.prefersLargeTitles = true
         navController.tabBarItem.title = title
         navController.tabBarItem.image = UIImage(systemName: image)
+
         
         return navController
     }

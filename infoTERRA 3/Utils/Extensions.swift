@@ -11,6 +11,10 @@ extension UIViewController {
     func sharedButton(selector: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: selector)
     }
+    
+    func searchButton(selector: Selector) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: selector)
+    }
 }
 
 extension UILabel {

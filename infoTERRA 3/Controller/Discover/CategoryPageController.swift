@@ -9,20 +9,10 @@ import UIKit
 
 class CategoryPageController: BaseListController, UICollectionViewDelegateFlowLayout {
     
-    
     //MARK: - Properties
     
     let reuseIdentifier = "id"
     let reuseHeaderIdentifier = "headerId"
-    
-    
-    
-//    private let searchController: UISearchController = {
-//        let controller = UISearchController(searchResultsController: SearchResultController())
-//        controller.searchBar.placeholder = "Search Products, Keywords..."
-//        controller.searchBar.searchBarStyle = .minimal
-//        return controller
-//    }()
     
     //MARK: - Lifecycle
     
@@ -30,7 +20,6 @@ class CategoryPageController: BaseListController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         
         configureUI()
-//        setupSearchBar()
     }
     
     //MARK: - Helpers
@@ -43,37 +32,7 @@ class CategoryPageController: BaseListController, UICollectionViewDelegateFlowLa
         collectionView.register(CategoryPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier)
         
         searchButton(selector: #selector(handleSearchButton))
-        
     }
-    
-//    func setupSearchBar() {
-//        navigationItem.searchController = searchController
-//        
-//        searchController.searchResultsUpdater = self
-//        searchController.hidesNavigationBarDuringPresentation = false
-////        searchController.obscuresBackgroundDuringPresentation = false
-//        
-//        if #available(iOS 26.0, *) {
-//            self.navigationItem.searchBarPlacementAllowsToolbarIntegration = false
-//        }
-//
-//    }
-//    
-//    func updateSearchResults(for searchController: UISearchController) {
-//        // Implement your search logic here
-//        guard let searchText = searchController.searchBar.text else { return }
-//        print("Searching for: \(searchText)")
-//        // Update your data source and reload your table/collection view
-//    }
-//    
-//    func SearchResultsControllerDidTapItem() {
-//        DispatchQueue.main.async { [weak self] in
-//            let controller = SearchResultController()
-//            let nav = UINavigationController(rootViewController: controller)
-//            nav.modalPresentationStyle = .fullScreen
-//            self?.present(nav, animated: true)
-//        }
-//    }
     
     //MARK: - Actions
     

@@ -19,7 +19,7 @@ class CategoryHeaderCell: UICollectionViewCell {
         }
     }
     
-    let titleLabel = UILabel(text: "Respiratory", font: .boldSystemFont(ofSize: 22))
+    let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 22, weight: .bold))
     let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18))
     let imageView = UIImageView(cornerRadius: 8)
     

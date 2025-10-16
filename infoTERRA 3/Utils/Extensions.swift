@@ -15,6 +15,11 @@ extension UIViewController {
     func searchButton(selector: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: selector)
     }
+    
+    func dismissButton(selector: Selector) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "close_button"), style: .plain, target: self, action: selector)
+    }
+
 }
 
 extension UILabel {

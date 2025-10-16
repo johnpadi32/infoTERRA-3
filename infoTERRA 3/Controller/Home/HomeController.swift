@@ -49,12 +49,58 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     func configureUI() {
         
-        navigationController?.isNavigationBarHidden = true
+        let greetingLabel = UILabel()
+        greetingLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        greetingLabel.textColor = .gray
+        greetingLabel.textAlignment = .left
+        greetingLabel.text = getGreeting()
+        
+        // Create title label
+        let titleLabel = UILabel()
+        titleLabel.text = "Welcome to infoTERRA"
+        titleLabel.font = UIFont.systemFont(ofSize: 26, weight: .heavy)
+        titleLabel.textColor = .deepLavanderColor
+        titleLabel.textAlignment = .center
+        
+        // Stack them vertically
+        let stackView = UIStackView(arrangedSubviews: [greetingLabel, titleLabel])
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 2
+        
+        // Wrap in a container view
+        let containerView = UIView()
+        containerView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Anchor label to the left inside container
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            stackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+        ])
+
+        // Set a fixed width for the container (adjust as needed)
+        containerView.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+
+        // Assign to titleView
+        navigationItem.titleView = containerView
+
         collectionView.backgroundColor = .systemGray6
         
         collectionView.register(HomeCell.self, forCellWithReuseIdentifier: HomeItem.CellType.single.rawValue)
         collectionView.register(HomeyMultipleAppCell.self, forCellWithReuseIdentifier: HomeItem.CellType.multiple.rawValue)
         collectionView.register(HomePromoOfferCell.self, forCellWithReuseIdentifier: HomeItem.CellType.promos.rawValue)
+    }
+    
+    private func getGreeting() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+
+        switch hour {
+        case 5..<12: return "Good morning"
+        case 12..<17: return "Good afternoon"
+        case 17..<22: return "Good evening"
+        default: return "Hello"
+        }
     }
     
     
@@ -228,5 +274,11 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 32, left: 0, bottom: 32, right: 0)
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let defaulOffSet = view.safeAreaInsets.top
+        let offSet = scrollView.contentOffset.y + defaulOffSet
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offSet))
     }
 }

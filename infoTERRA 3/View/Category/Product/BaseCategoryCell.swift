@@ -1,15 +1,15 @@
 //
-//  BaseHomeCell.swift
+//  BaseCategoryCell.swift
 //  infoTERRA 3
 //
-//  Created by John Padilla on 10/7/25.
+//  Created by John Padilla on 10/19/25.
 //
 
 import UIKit
 
-class BaseHomeCell: UICollectionViewCell {
+class BaseCategoryCell: UICollectionViewCell {
     
-    var homeItem: HomeItem!
+    var systemItem: SystemItem!
     
     override var isHighlighted: Bool {
         didSet {
@@ -17,9 +17,12 @@ class BaseHomeCell: UICollectionViewCell {
             if isHighlighted {
                 transform = .init(scaleX: 0.9, y: 0.9)
             }
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut) {
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                
                 self.transform = transform
-            }
+                
+            })
         }
     }
     
@@ -38,8 +41,10 @@ class BaseHomeCell: UICollectionViewCell {
         self.backgroundView?.layer.shadowOffset = .init(width: 0, height: 10)
         self.backgroundView?.layer.shouldRasterize = true
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

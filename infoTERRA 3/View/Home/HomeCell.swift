@@ -20,6 +20,8 @@ class HomeCell: BaseHomeCell {
             backgroundColor = homeItem.backgroundColor
             titleLabel.textColor = homeItem.textColor
             descriptionLabel.textColor = homeItem.descriptionTextColor
+            
+            backgroundView?.backgroundColor = homeItem.backgroundColor
         }
     }
     
@@ -57,6 +59,7 @@ class HomeCell: BaseHomeCell {
         
         imageView.image = UIImage(named: "SystemImage")
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
  
         let imageContainerView = UIView()
         imageContainerView.addSubview(imageView)

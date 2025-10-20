@@ -13,6 +13,9 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     let reuseIdentifier = "cellId"
     
+    var systemFullScreenController: SystemFullScreenController!
+
+    
     let items = [
         SystemItem.init(title: "RESPIRATORY SYSTEM", image: .respiratory, description: "The respiratory system supplies oxygen; peppermint supports breathing"),
         SystemItem.init(title: "REPRODUCTIVE SYSTEM", image: .reproductive, description: "Stress, toxins, and lifestyle can disrupt reproductive health. Essential oils support hormones, mood, and intimacy."),
@@ -46,6 +49,16 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     //MARK: - Actions
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let systemFullScreenController = SystemFullScreenController()
+        
+        systemFullScreenController.modalPresentationStyle = .fullScreen
+        present(UINavigationController(rootViewController: systemFullScreenController), animated: true)
+
+        
+    }
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -60,10 +73,5 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width - 48, height: view.frame.height)
     }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return .init(top: 0, left: 16, bottom: 0, right: 16)
-//    }
-
 }
 

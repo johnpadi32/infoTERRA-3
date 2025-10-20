@@ -49,6 +49,7 @@ class HomeFullscreenController: UITableViewController {
             headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
             headerCell.homeCell.homeItem = homeItem
             headerCell.homeCell.layer.cornerRadius = 0
+            headerCell.clipsToBounds = true
             return headerCell
         }
             let cell = HomeFullscreenDescription()

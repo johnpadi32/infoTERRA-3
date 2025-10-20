@@ -19,6 +19,8 @@ class HomePromoOfferCell: BaseHomeCell {
             backgroundColor = homeItem.backgroundColor
             titleLabel.textColor = homeItem.textColor
             descriptionLabel.textColor = homeItem.descriptionTextColor
+            
+            promoOfferController.collectionView.backgroundColor = .white
         }
     }
     

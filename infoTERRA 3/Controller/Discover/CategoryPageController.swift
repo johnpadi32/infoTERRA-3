@@ -26,6 +26,8 @@ class CategoryPageController: BaseListController, UICollectionViewDelegateFlowLa
     
     func configureUI() {
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+
         collectionView.backgroundColor = .systemBackground
         collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         

@@ -24,7 +24,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     var items = [
         HomeItem.init(title: "See october Deals" , image: .octoberPromotions, Description: "Check this page monthly for doTERRA deals—discounts, free products, and special offers await!", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray, cellType: .promos),
-        HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .deepLavanderColor, textColor: .white, descriptionTextColor: .systemGray6, cellType: .single),
+        HomeItem.init(title: "Get the Hygge Bundle", image: .homehyggeduo, Description: "Warm up any space with the cozy Hygge® Blend and stylish diffuser—Scandinavian comfort in a hug.", backgroundColor: .lavanderColor, textColor: .white, descriptionTextColor: .systemGray6, cellType: .single),
         HomeItem.init(title: "New Products Are Here", image: .homenewproducts, Description: "Shop Products", backgroundColor: .white, textColor: .black, descriptionTextColor: .darkGray, cellType: .multiple),
         HomeItem.init(title: "90-Days Reset", image: ._90Daycleanse, Description: "Sluggish mornings? The 90-Day Reset is a simple detox to boost energy, mood, and clarity.", backgroundColor: .greenColorDoterra, textColor: .white, descriptionTextColor: .systemGray6, cellType: .single),
     ]
@@ -157,17 +157,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
             superview = superview?.superview
         }
     }
-    
-    
-//    fileprivate func showDailyListFullScreen(_ indexPath: IndexPath) {
-//        let fullController = HomeMultipleController(mode: .fullscreen)
-//        fullController.modalPresentationStyle = .fullScreen
-//        present(UINavigationController(rootViewController: fullController), animated: true)
-//    }
-//    
-//    fileprivate func showPromoListFullScreen(_ indexPath: IndexPath) {
-//        
-//    }
+
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         

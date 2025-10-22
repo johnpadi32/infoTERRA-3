@@ -15,19 +15,6 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     var systemFullScreenController: SystemFullScreenController!
 
-    
-    let items = [
-        SystemItem.init(title: "RESPIRATORY SYSTEM", image: .respiratory, description: "The respiratory system supplies oxygen; peppermint supports breathing"),
-        SystemItem.init(title: "REPRODUCTIVE SYSTEM", image: .reproductive, description: "Stress, toxins, and lifestyle can disrupt reproductive health. Essential oils support hormones, mood, and intimacy."),
-        SystemItem.init(title: "NERVOUS SYSTEM", image: .nervous, description: "The nervous system controls thoughts, emotions, and movement. Essential oils help calm and balance it."),
-        SystemItem.init(title: "MUSCULOSKELETAL SYSTEM", image: .musculoskeletal, description: "Muscles, bones, and joints power movement. Essential oils and supplements support strength and soothe discomfort."),
-        SystemItem.init(title: "INTEGUMENTARY SYSTEM", image: .integumentary, description: "kin, hair, and nails shield your body. Essential oils and natural care products keep them healthy and radiant."),
-        SystemItem.init(title: "IMMUNE SYSTEM", image: .immune, description: "Your immune system defends against threats. Essential oils and supplements help keep it strong and resilient."),
-        SystemItem.init(title: "ENDOCRINE SYSTEM", image: .endocrine, description: "Hormones shape mood, hunger, and sleep. Essential oils like Clary Sage and Fennel support endocrine balance."),
-        SystemItem.init(title: "DIGESTIVE SYSTEM", image: .digestive, description: "Digestion fuels your body with nutrients and energy. Essential oils and supplements support comfort and gut health."),
-        SystemItem.init(title: "CIRCULATORY SYSTEM", image: .circulatory, description: "The heart and vessels move oxygen and remove waste. A healthy heart supports strong circulation.")
-    ]
-    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -50,16 +37,20 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     //MARK: - Actions
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let systemFullScreenController = SystemFullScreenController()
+//        let systemItem = items[indexPath.row]
         
-        systemFullScreenController.modalPresentationStyle = .fullScreen
-        present(UINavigationController(rootViewController: systemFullScreenController), animated: true)
+        
+        let controller = SystemFullScreenController(systemItem: items[indexPath.row])
+        controller.modalPresentationStyle = .fullScreen
+        present(UINavigationController(rootViewController: controller), animated: true)
+        
+//        let controller = SystemController()
+//        controller.systemItem = items[indexPath.row]
+//        present(UINavigationController(rootViewController: controller), animated: true)
 
-        
     }
     
-    
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }

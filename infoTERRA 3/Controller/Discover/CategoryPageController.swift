@@ -66,6 +66,8 @@ class CategoryPageController: BaseListController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
         let controller = ProductController()
         controller.title = "Essential Oils blends"
         navigationController?.pushViewController(controller, animated: true)

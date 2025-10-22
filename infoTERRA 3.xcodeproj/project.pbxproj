@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		485AA35E2EA7544D00C996C6 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485AA35D2EA7544D00C996C6 /* Items.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4819A5D62E67BE2300396CE2 /* infoTERRA 3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "infoTERRA 3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		485AA35D2EA7544D00C996C6 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -47,6 +52,7 @@
 			children = (
 				4819A6412E69540900396CE2 /* infoTERRA 3 */,
 				4819A5D72E67BE2300396CE2 /* Products */,
+				485AA35D2EA7544D00C996C6 /* Items.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				485AA35E2EA7544D00C996C6 /* Items.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

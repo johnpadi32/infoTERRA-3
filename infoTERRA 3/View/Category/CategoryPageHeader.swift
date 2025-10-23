@@ -13,7 +13,9 @@ class CategoryPageHeader: UICollectionReusableView {
     
     let categoryHeaderHorizontalController = CategoryHeaderHorizontalController()
     
-    let titleLabel = UILabel(text: "Category", font: .boldSystemFont(ofSize: 28))
+    let imageView = UIImageView(cornerRadius: 16)
+
+    let titleLabel = UILabel(text: "CATEGORY", font: .systemFont(ofSize: 20, weight: .bold))
     
     //MARK: - Lifecycle
     
@@ -22,13 +24,19 @@ class CategoryPageHeader: UICollectionReusableView {
         
         backgroundColor = .white
         
-        addSubview(categoryHeaderHorizontalController.view)
-//        categoryHeaderHorizontalController.view.fillSuperview()
+        imageView.image = .october2025
+        imageView.contentMode = .scaleAspectFill
+        imageView.setHeight(190)
         
-        categoryHeaderHorizontalController.view.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 60, paddingRight: 0)
+        addSubview(imageView)
+        imageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        
+        addSubview(categoryHeaderHorizontalController.view)
+        
+        categoryHeaderHorizontalController.view.anchor(top: imageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 22, paddingLeft: 0, paddingBottom: 50, paddingRight: 0)
         
         addSubview(titleLabel)
-        titleLabel.anchor(left: leftAnchor, bottom: bottomAnchor, paddingLeft: 22, paddingBottom: 0)
+        titleLabel.anchor(left: leftAnchor, bottom: bottomAnchor, paddingLeft: 16, paddingBottom: 0)
     }
     
     required init?(coder: NSCoder) {

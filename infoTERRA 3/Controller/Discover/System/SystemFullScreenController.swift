@@ -16,15 +16,12 @@ class SystemFullScreenController: UITableViewController {
         
     var systemItem : SystemItem?
     
-
-    
-
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = systemItem?.title
+//        navigationItem.title = systemItem?.title
         
         configureUI()
         configureTableView()
@@ -80,7 +77,7 @@ class SystemFullScreenController: UITableViewController {
             
             let headerCell = tableView.dequeueReusableCell(withIdentifier: reuseHeaderId, for: indexPath) as!  SystemFullScreenHeaderCell
             
-//            headerCell.titleLabel.text = systemItem?.title
+            headerCell.titleLabel.text = systemItem?.title
             headerCell.descriptionLabel.text = systemItem?.description
             headerCell.subDescriptionLabel.text = systemItem?.subDescription
             headerCell.imageViews.image = systemItem?.image
@@ -88,9 +85,6 @@ class SystemFullScreenController: UITableViewController {
             return headerCell
         
             
-//            let headerCell = CategoryHeaderCell()
-//            headerCell.systemItem = items[indexPath.row]
-//            return headerCell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: reusseIdentifier, for: indexPath) as! SystemCell
             return cell

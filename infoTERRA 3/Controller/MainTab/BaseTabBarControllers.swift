@@ -18,8 +18,9 @@ class BaseTabBarControllers: UITabBarController, UISearchBarDelegate {
         view.backgroundColor = .white
         
         viewControllers = [
-            createNavController(viewController: HomeController(), title: "infoTERRA", imageName: "Home", image: "house.fill"),
+
             createNavController(viewController: CategoryPageController(), title: "Discover", imageName: "Categories", image: "sparkle.magnifyingglass"),
+            createNavController(viewController: HomeController(), title: "infoTERRA", imageName: "Home", image: "house.fill"),
             createNavController(viewController: SearchResultController(), title: "Profile", imageName: "Profile", image: "person"),
         ]
     }

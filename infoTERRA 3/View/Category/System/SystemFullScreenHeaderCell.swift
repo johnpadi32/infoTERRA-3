@@ -34,12 +34,12 @@ class SystemFullScreenHeaderCell: UITableViewCell {
         imageViews.contentMode = .scaleAspectFill
         imageViews.setHeight(150)
         
-        let stackView = UIStackView(arrangedSubviews: [descriptionLabel, imageViews, subDescriptionLabel, productLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imageViews, subDescriptionLabel, productLabel])
         stackView.axis = .vertical
         stackView.spacing = 18
         
         addSubview(stackView)
-        stackView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 20, paddingLeft: 24, paddingBottom: 22, paddingRight: 24)
+        stackView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: -10, paddingLeft: 24, paddingBottom: 22, paddingRight: 24)
 
     }
     

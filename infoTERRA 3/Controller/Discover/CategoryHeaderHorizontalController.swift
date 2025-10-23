@@ -30,24 +30,17 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
         
         collectionView.backgroundColor = .white
         collectionView.register(CategoryHeaderCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.contentInset = .init(top: 0, left: 10, bottom: 0, right: -10)
 
     }
     
     //MARK: - Actions
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let systemItem = items[indexPath.row]
-        
-        
+
         let controller = SystemFullScreenController(systemItem: items[indexPath.row])
         controller.modalPresentationStyle = .fullScreen
         present(UINavigationController(rootViewController: controller), animated: true)
-        
-//        let controller = SystemController()
-//        controller.systemItem = items[indexPath.row]
-//        present(UINavigationController(rootViewController: controller), animated: true)
-
     }
     
 
@@ -62,7 +55,14 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 48, height: view.frame.height)
+
+
+        let text = items[indexPath.item] // Your label text
+            let font = UIFont.systemFont(ofSize: 22) // Match your label's font
+
+        let size = (text.title as NSString).size(withAttributes: [.font: font])
+            return CGSize(width: ceil(size.width) + 10, height: collectionView.frame.height)
+
     }
 }
 

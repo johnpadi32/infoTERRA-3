@@ -19,8 +19,8 @@ class BaseTabBarControllers: UITabBarController, UISearchBarDelegate {
         
         viewControllers = [
 
-            createNavController(viewController: CategoryPageController(), title: "Discover", imageName: "Categories", image: "sparkle.magnifyingglass"),
-            createNavController(viewController: HomeController(), title: "infoTERRA", imageName: "Home", image: "house.fill"),
+            createNavController(viewController: HomePageController(), title: "infoTERRA", imageName: "Categories", image: "house.fill"),
+            createNavController(viewController: DiscoverController(), title: "Discover", imageName: "Home", image: "sparkle.magnifyingglass"),
             createNavController(viewController: SearchResultController(), title: "Profile", imageName: "Profile", image: "person"),
         ]
     }

@@ -11,25 +11,36 @@ class CategoryPageHeader: UICollectionReusableView {
     
     //MARK: - Properties
     
-    let categoryHeaderHorizontalController = CategoryHeaderHorizontalController()
+    let categoryHeaderHorizontalController = HomeHeaderHorizontalController()
     
     let imageView = UIImageView(cornerRadius: 16)
+    
+    let arrowButton = UIButton(title: "SHOP NOW")
 
-    let titleLabel = UILabel(text: "CATEGORY", font: .systemFont(ofSize: 20, weight: .bold))
+    let titleLabel = UILabel(text: "Category", font: .systemFont(ofSize: 20, weight: .bold))
     
     //MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = .systemGray6
         
         imageView.image = .october2025
         imageView.contentMode = .scaleAspectFill
         imageView.setHeight(190)
         
+        arrowButton.backgroundColor = .white
+        arrowButton.tintColor = .black
+        arrowButton.setDimensions(height: 35, width: 115)
+        arrowButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        arrowButton.layer.cornerRadius = 35/2
+        
         addSubview(imageView)
         imageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        
+        addSubview(arrowButton)
+        arrowButton.anchor(bottom: imageView.bottomAnchor, right: rightAnchor, paddingBottom: 16, paddingRight: 26)
         
         addSubview(categoryHeaderHorizontalController.view)
         

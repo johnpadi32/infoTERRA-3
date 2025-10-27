@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeFullscreenController: UITableViewController {
+class DiscoverFullscreenController: UITableViewController {
     
     //MARK: - Properties
     
@@ -58,7 +58,7 @@ class HomeFullscreenController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return HomeController.cellSize
+            return DiscoverController.cellSize
             
         }
         return super.tableView(tableView, heightForRowAt: indexPath)

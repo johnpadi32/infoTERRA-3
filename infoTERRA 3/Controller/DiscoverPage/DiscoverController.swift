@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
+class DiscoverController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     //MARK: - Properties
     
@@ -16,7 +16,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
 //    var items = [HomeItem]()
     
-    var homeFullscreenController: HomeFullscreenController!
+    var homeFullscreenController: DiscoverFullscreenController!
     var topConstraint: NSLayoutConstraint?
     var leadingConstraint: NSLayoutConstraint?
     var widthConstraint: NSLayoutConstraint?
@@ -49,7 +49,10 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     func configureUI() {
         
+        navigationController?.navigationBar.prefersLargeTitles = true
 
+        
+        searchButton(selector: #selector(handleSearchButton))
 
         collectionView.backgroundColor = .systemGray6
         
@@ -62,6 +65,13 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     
     //MARK: - Actions
+    
+    @objc func handleSearchButton() {
+        let controller = SearchResultController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
     
     @objc func handleRemoveFullscreenView() {
 
@@ -107,7 +117,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
                 
                 let apps = self.items[indexPath.item]
                 
-                let fullController = HomeMultipleController(mode: .fullscreen)
+                let fullController = DiscoverMultipleController(mode: .fullscreen)
                 present(BackEnabledNAvigationController(rootViewController: fullController), animated: true)
                 return
             }
@@ -120,7 +130,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
         
         
         if items[indexPath.item].cellType == .multiple {
-            let fullController = HomeMultipleController(mode: .fullscreen)
+            let fullController = DiscoverMultipleController(mode: .fullscreen)
             fullController.modalPresentationStyle = .fullScreen
             present(UINavigationController(rootViewController: fullController), animated: true)
             return
@@ -134,7 +144,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
                 return
         }
         
-        let homeFullscreenController = HomeFullscreenController()
+        let homeFullscreenController = DiscoverFullscreenController()
         homeFullscreenController.homeItem = items[indexPath.row]
         homeFullscreenController.dismissHandler = {
             self.handleRemoveFullscreenView()
@@ -208,7 +218,7 @@ class HomeController: BaseListController, UICollectionViewDelegateFlowLayout {
     static let cellSize: CGFloat = 500
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 64, height: HomeController.cellSize)
+        return .init(width: view.frame.width - 64, height: DiscoverController.cellSize)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

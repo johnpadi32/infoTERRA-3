@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeMultipleController: BaseListController, UICollectionViewDelegateFlowLayout {
+class DiscoverMultipleController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     //MARK: - Properties
     

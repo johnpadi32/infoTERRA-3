@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
+class HomeHeaderHorizontalController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
     
     //MARK: - Properties
     
@@ -28,7 +28,7 @@ class CategoryHeaderHorizontalController: HorizontalSnappingController, UICollec
     
     func configureUI() {
         
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemGray6
         collectionView.register(CategoryHeaderCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.contentInset = .init(top: 0, left: 10, bottom: 0, right: -10)
 

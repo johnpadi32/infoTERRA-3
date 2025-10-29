@@ -10,7 +10,7 @@ import UIKit
 class NewProductHeader: UICollectionReusableView {
 
     
-    let titleLabel = UILabel(text: "New Products Are Here", font: .systemFont(ofSize: 30, weight: .bold), numberOfLines: 2)
+    let titleLabel = UILabel(text: "New Products Are Here", font: .systemFont(ofSize: 25, weight: .bold), numberOfLines: 2)
     
     let descriptionLabel = UILabel(text: "Shop Products", font: .systemFont(ofSize: 18, weight: .medium), numberOfLines: 3)
     
@@ -19,14 +19,14 @@ class NewProductHeader: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel.textAlignment = .center
+//        titleLabel.textAlignment = .center
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         stackView.axis = .vertical
         stackView.spacing = 8
         
         addSubview(stackView)
-        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 1, paddingLeft: 24, paddingBottom: 24, paddingRight: 24)
+        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 24, paddingLeft: 24, paddingBottom: 24, paddingRight: 24)
 
     }
     

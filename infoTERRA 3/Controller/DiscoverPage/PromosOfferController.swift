@@ -31,20 +31,20 @@ class PromosOfferController: BaseListController, UICollectionViewDelegateFlowLay
         
         if mode == .fullscreen {
             setupClosebutton()
-//            navigationController?.isNavigationBarHidden = true
-//            navigationController?.navigationBar.isHidden = true
+            navigationController?.isNavigationBarHidden = true
+            navigationController?.navigationBar.isHidden = true
             collectionView.register(PromoHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         } else {
             collectionView.isScrollEnabled = false
         }
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        collectionView.backgroundColor = .white
-//        navigationController?.isNavigationBarHidden = true
-//        navigationController?.navigationBar.isHidden = true
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.isHidden = true
+    }
 
     
     //MARK: - Helpers

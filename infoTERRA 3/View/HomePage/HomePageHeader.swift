@@ -7,13 +7,22 @@
 
 import UIKit
 
-class CategoryPageHeader: UICollectionReusableView {
+protocol HomePageHeaderDelegate: AnyObject {
+    func ShowPromoPage()
+}
+
+class HomePageHeader: UICollectionReusableView {
     
     //MARK: - Properties
     
+    weak var delegate: HomePageHeaderDelegate?
+    
     let categoryHeaderHorizontalController = HomeHeaderHorizontalController()
     
-    let imageView = UIImageView(cornerRadius: 16)
+    lazy var imageView = UIImageView(cornerRadius: 16)
+    
+    let tap = UITapGestureRecognizer(target: self, action: #selector(handleImageTapped))
+    
     
     let arrowButton = UIButton(title: "SHOP NOW")
 
@@ -30,11 +39,16 @@ class CategoryPageHeader: UICollectionReusableView {
         imageView.contentMode = .scaleAspectFill
         imageView.setHeight(190)
         
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
+        
+        
         arrowButton.backgroundColor = .white
         arrowButton.tintColor = .black
         arrowButton.setDimensions(height: 35, width: 115)
         arrowButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         arrowButton.layer.cornerRadius = 35/2
+        arrowButton.addTarget(self, action: #selector(handleImageTapped), for: .touchUpInside)
         
         addSubview(imageView)
         imageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
@@ -52,6 +66,10 @@ class CategoryPageHeader: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func handleImageTapped() {
+        delegate?.ShowPromoPage()
     }
     
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryHeaderCell: UICollectionViewCell {
+class HomeHeaderCell: UICollectionViewCell {
     
     //MARK: - Properties
     
@@ -19,7 +19,7 @@ class CategoryHeaderCell: UICollectionViewCell {
         }
     }
     
-    let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 14, weight: .regular))
+    let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 15, weight: .regular))
 //    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18))
 //    let imageView = UIImageView(cornerRadius: 8)
     

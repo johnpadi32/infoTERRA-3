@@ -29,7 +29,7 @@ class HomeHeaderHorizontalController: HorizontalSnappingController, UICollection
     func configureUI() {
         
         collectionView.backgroundColor = .systemGray6
-        collectionView.register(CategoryHeaderCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(HomeHeaderCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.contentInset = .init(top: 0, left: 10, bottom: 0, right: -10)
 
     }
@@ -49,7 +49,7 @@ class HomeHeaderHorizontalController: HorizontalSnappingController, UICollection
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryHeaderCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HomeHeaderCell
         cell.systemItem = items[indexPath.item]
         return cell
     }

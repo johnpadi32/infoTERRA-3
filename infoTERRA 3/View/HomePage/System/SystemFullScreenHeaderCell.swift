@@ -11,10 +11,10 @@ class SystemFullScreenHeaderCell: UITableViewCell {
     
     //MARK: - Properties
 
-    let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 22, weight: .bold))
-    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18))
+    let titleLabel = UILabel(text: "Respiratory", font: .systemFont(ofSize: 28, weight: .bold))
+    let descriptionLabel = UILabel(text: "The respiratory system supplies oxygen; peppermint supports breathing", font: .systemFont(ofSize: 18, weight: .medium))
     let imageViews = UIImageView(cornerRadius: 8)
-    let subDescriptionLabel = UILabel(text: "The respiratory system—lungs, airways, and trachea—delivers oxygen to your cells with every breath. Peppermint oil has long supported healthy breathing.", font: .systemFont(ofSize: 18))
+    let subDescriptionLabel = UILabel(text: "The respiratory system—lungs, airways, and trachea—delivers oxygen to your cells with every breath. Peppermint oil has long supported healthy breathing.", font: .systemFont(ofSize: 16))
     
     let productLabel = UILabel(text: "TOP PRODUCTS", font: .systemFont(ofSize: 22, weight: .bold))
 
@@ -24,11 +24,13 @@ class SystemFullScreenHeaderCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = .white
+        backgroundColor = .systemGray6
                 
         titleLabel.textColor = UIColor.doTERRABlueTextColor
+        titleLabel.textAlignment = .center
         descriptionLabel.numberOfLines = 0
         subDescriptionLabel.numberOfLines = 0
+        subDescriptionLabel.textColor = .darkGray
         
         imageViews.image = .respiratory
         imageViews.contentMode = .scaleAspectFill

@@ -51,7 +51,6 @@ class DiscoverController: BaseListController, UICollectionViewDelegateFlowLayout
         
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        
         searchButton(selector: #selector(handleSearchButton))
 
         collectionView.backgroundColor = .systemGray6
@@ -218,7 +217,7 @@ class DiscoverController: BaseListController, UICollectionViewDelegateFlowLayout
     static let cellSize: CGFloat = 500
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 64, height: DiscoverController.cellSize)
+        return .init(width: view.frame.width - 30, height: DiscoverController.cellSize)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

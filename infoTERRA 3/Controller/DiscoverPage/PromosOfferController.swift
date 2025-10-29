@@ -12,6 +12,7 @@ class PromosOfferController: BaseListController, UICollectionViewDelegateFlowLay
     //MARK: - Properties
     
     let cellId = "cellId"
+    let headerId = "headerId"
     
     let closeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -30,10 +31,21 @@ class PromosOfferController: BaseListController, UICollectionViewDelegateFlowLay
         
         if mode == .fullscreen {
             setupClosebutton()
+//            navigationController?.isNavigationBarHidden = true
+//            navigationController?.navigationBar.isHidden = true
+            collectionView.register(PromoHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         } else {
             collectionView.isScrollEnabled = false
         }
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        collectionView.backgroundColor = .white
+//        navigationController?.isNavigationBarHidden = true
+//        navigationController?.navigationBar.isHidden = true
+//    }
+
     
     //MARK: - Helpers
     
@@ -57,6 +69,22 @@ class PromosOfferController: BaseListController, UICollectionViewDelegateFlowLay
         return true
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PromoHeader
+
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if mode == .fullscreen {
+            return CGSize(width: view.frame.width, height: 180)
+        } else {
+            return .zero
+        }
+
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailController = DetialsController()
         navigationController?.pushViewController(detailController, animated: true)
@@ -71,16 +99,18 @@ class PromosOfferController: BaseListController, UICollectionViewDelegateFlowLay
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PromoOfferCell
+
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 95
+        let height: CGFloat = 115
+        let minHeight: CGFloat = 98
         if mode == .fullscreen {
             return .init(width: view.frame.width - 48, height: height)
         }
-        return .init(width: view.frame.width, height: height)
+        return .init(width: view.frame.width, height: minHeight)
     }
     
     fileprivate let spacing: CGFloat = 16

@@ -12,6 +12,7 @@ class DiscoverMultipleController: BaseListController, UICollectionViewDelegateFl
     //MARK: - Properties
     
     let cellId = "cellId"
+    let headerId = "headerId"
     
     let closeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -30,6 +31,8 @@ class DiscoverMultipleController: BaseListController, UICollectionViewDelegateFl
         
         if mode == .fullscreen {
             setupClosebutton()
+            collectionView.register(NewProductHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+
         } else {
             collectionView.isScrollEnabled = false
         }
@@ -57,6 +60,22 @@ class DiscoverMultipleController: BaseListController, UICollectionViewDelegateFl
         return true
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! NewProductHeader
+
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if mode == .fullscreen {
+            return CGSize(width: view.frame.width, height: 130)
+        } else {
+            return .zero
+        }
+
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailController = DetialsController()
         navigationController?.pushViewController(detailController, animated: true)
@@ -77,12 +96,13 @@ class DiscoverMultipleController: BaseListController, UICollectionViewDelegateFl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let height: CGFloat = 95
+        let height: CGFloat = 115
+        let minHeight: CGFloat = 98
         
         if mode == .fullscreen {
             return .init(width: view.frame.width - 48, height: height)
         }
-        return .init(width: view.frame.width, height: height)
+        return .init(width: view.frame.width, height: minHeight)
     }
     
     fileprivate let spacing: CGFloat = 16

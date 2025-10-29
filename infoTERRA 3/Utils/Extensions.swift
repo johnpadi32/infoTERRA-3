@@ -19,6 +19,10 @@ extension UIViewController {
     func dismissButton(selector: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "close_button"), style: .plain, target: self, action: selector)
     }
+    
+    func profileButton(selector: Selector) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "person.circle") , style: .plain, target: self, action: selector)
+    }
 
 }
 

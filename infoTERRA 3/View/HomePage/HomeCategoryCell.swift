@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class CategoryGroupCell: UICollectionViewCell {
+class HomeCategoryCell: UICollectionViewCell {
     
     //MARK: - Properties
     

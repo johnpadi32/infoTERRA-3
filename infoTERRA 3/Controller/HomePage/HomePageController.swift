@@ -61,8 +61,14 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     func configureUI() {
         
         collectionView.backgroundColor = .systemGray6
-        collectionView.register(CategoryGroupCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.register(CategoryPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier)
+        collectionView.register(HomeCategoryCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(HomePageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseHeaderIdentifier)
+        
+        profileButton(selector: #selector(handleUser))
+        
+//        let refresher = UIRefreshControl()
+//        refresher.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+//        collectionView.refreshControl = refresher
     }
     
     private func getGreeting() -> String {
@@ -76,10 +82,21 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
         }
     }
     
+
+    
     //MARK: - Actions
     
+    @objc func handleUser() {
+        print("DEBUG: User access button press")
+    }
+    
+//    @objc func handleRefresh() {
+//        print("refresh pressed ")
+//    }
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! CategoryPageHeader
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! HomePageHeader
+        header.delegate = self
         return header
     }
 
@@ -94,7 +111,7 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryGroupCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HomeCategoryCell
         return cell
     }
     
@@ -128,3 +145,12 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     }
 }
 
+extension HomePageController: HomePageHeaderDelegate {
+    func ShowPromoPage() {
+        let controller = PromosOfferController(mode: .fullscreen)
+        controller.modalPresentationStyle = .fullScreen
+        present(UINavigationController(rootViewController: controller), animated: true)
+        
+    }
+
+}

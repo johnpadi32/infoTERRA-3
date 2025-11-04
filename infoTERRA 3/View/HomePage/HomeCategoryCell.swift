@@ -10,6 +10,11 @@ class HomeCategoryCell: UICollectionViewCell {
     
     //MARK: - Properties
     
+    func generateCell(_ category: Category) {
+        categoryLabel.text = category.name
+        categoryImage.image = category.image
+    }
+    
     let categoryLabel = UILabel(text: "Essential Oils blends", font: .boldSystemFont(ofSize: 18))
 
     

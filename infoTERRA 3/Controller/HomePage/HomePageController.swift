@@ -14,6 +14,8 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     let reuseIdentifier = "id"
     let reuseHeaderIdentifier = "headerId"
     
+    var categorryArray: [Category] = []
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -21,6 +23,11 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
         
         configureUI()
         congfigureTitle()
+        fetchCategories()
+        
+        CategoryService.fetchCategoriesFromFirebase { allCategory in
+            print("Callback is completed")
+        }
 
 
     }
@@ -99,6 +106,13 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
 //        print("refresh pressed ")
 //    }
     
+    private func fetchCategories() {
+        CategoryService.fetchCategoriesFromFirebase { allCategory in
+            self.categorryArray = allCategory
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseHeaderIdentifier, for: indexPath) as! HomePageHeader
         header.delegate = self
@@ -112,11 +126,12 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return categorryArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HomeCategoryCell
+        cell.generateCell(categorryArray[indexPath.row])
         return cell
     }
     

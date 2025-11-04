@@ -7,7 +7,29 @@
 
 import FirebaseCore
 
+
 struct CategoryService {
+    
+    //MARK: - Fetch Category from Firebase
+    static func fetchCategoriesFromFirebase(completion: @escaping (_ categoryArray: [Category]) -> Void) {
+        var categoryArray: [Category] = []
+        
+        FirebaseReference(.Category).getDocuments { snapshot, error in
+            guard let snapshot = snapshot else {
+                completion(categoryArray)
+                return
+            }
+            if !snapshot.isEmpty {
+                for categoryDic in snapshot.documents {
+                    print("Created new category with name")
+                    categoryArray.append(Category(_dictionary: categoryDic.data() as NSDictionary))
+                }
+            }
+            completion(categoryArray)
+        }
+    }
+    
+    //MARK: - Save to Firebase
     static func saveCategoryFirebase(_ category: Category) {
         let id = UUID().uuidString
         category.id = id

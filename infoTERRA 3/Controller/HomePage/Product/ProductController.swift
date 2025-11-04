@@ -22,6 +22,11 @@ class ProductController: BaseListController, UICollectionViewDelegateFlowLayout 
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.transform = .identity
+    }
+    
     //MARK: - Helpers
     
     func configureUI() {
@@ -31,6 +36,7 @@ class ProductController: BaseListController, UICollectionViewDelegateFlowLayout 
         collectionView.backgroundColor = .white
         collectionView.register(ProductGroupCell.self, forCellWithReuseIdentifier: productId)
     }
+
     
     //MARK: - Actions
     

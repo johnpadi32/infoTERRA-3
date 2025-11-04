@@ -15,7 +15,7 @@ class HomeCategoryCell: UICollectionViewCell {
         categoryImage.image = category.image
     }
     
-    let categoryLabel = UILabel(text: "Essential Oils blends", font: .boldSystemFont(ofSize: 18))
+    let categoryLabel = UILabel(text: "Essential Oils blends", font: .boldSystemFont(ofSize: 20))
 
     
 //    let companyLabel = UILabel(text: "Company name", font: .systemFont(ofSize: 13))

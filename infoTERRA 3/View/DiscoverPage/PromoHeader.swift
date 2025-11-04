@@ -26,7 +26,7 @@ class PromoHeader: UICollectionReusableView {
         stackView.spacing = 12
         
         addSubview(stackView)
-        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 24, paddingLeft: 24, paddingBottom: 24, paddingRight: 24)
+        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 24, paddingBottom: 24, paddingRight: 24)
 
     }
     

@@ -22,6 +22,7 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
         configureUI()
         congfigureTitle()
 
+
     }
     
     //MARK: - Helpers
@@ -87,7 +88,11 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     //MARK: - Actions
     
     @objc func handleUser() {
-        print("DEBUG: User access button press")
+        let controller = ProfileController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+
+        present(nav, animated: true)
     }
     
 //    @objc func handleRefresh() {
@@ -148,8 +153,10 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
 extension HomePageController: HomePageHeaderDelegate {
     func ShowPromoPage() {
         let controller = PromosOfferController(mode: .fullscreen)
-        controller.modalPresentationStyle = .fullScreen
-        present(UINavigationController(rootViewController: controller), animated: true)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+
+        present(nav, animated: true)
         
     }
 

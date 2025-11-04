@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = BaseTabBarControllers()
+        window?.rootViewController = SplashViewController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

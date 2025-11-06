@@ -7,7 +7,6 @@
 
 import FirebaseCore
 
-
 struct CategoryService {
     
     //MARK: - Fetch Category from Firebase

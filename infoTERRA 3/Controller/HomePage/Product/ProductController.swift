@@ -13,6 +13,12 @@ class ProductController: BaseListController, UICollectionViewDelegateFlowLayout 
     
     let productId = "productId"
     
+    private var category: Category {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -27,11 +33,22 @@ class ProductController: BaseListController, UICollectionViewDelegateFlowLayout 
         navigationController?.navigationBar.transform = .identity
     }
     
+    init(category: Category) {
+        self.category = category
+        super.init()
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - Helpers
     
     func configureUI() {
         
         navigationItem.largeTitleDisplayMode = .never
+        
+        title = category.name
         
         collectionView.backgroundColor = .white
         collectionView.register(ProductGroupCell.self, forCellWithReuseIdentifier: productId)

@@ -14,7 +14,7 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     let reuseIdentifier = "id"
     let reuseHeaderIdentifier = "headerId"
     
-    var categorryArray: [Category] = []
+    var categorryArray = [Category]()
     
     //MARK: - Lifecycle
     
@@ -28,9 +28,8 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
         CategoryService.fetchCategoriesFromFirebase { allCategory in
             print("Callback is completed")
         }
-
-
     }
+
     
     //MARK: - Helpers
     
@@ -136,8 +135,9 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ProductController()
-        controller.title = "Essential Oils blends"
+
+        let controller = ProductController(category: categorryArray[indexPath.row])
+
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -162,6 +162,7 @@ class HomePageController: BaseListController, UICollectionViewDelegateFlowLayout
         let defaultOffSet = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffSet
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+
     }
 }
 
